@@ -3,6 +3,7 @@
 namespace Base64ToFile\Model\Behavior;
 
 use ArrayObject;
+use App\Exceptions\Base64Exception;
 use Cake\Database\Exception;
 use Cake\Event\Event;
 use Cake\Filesystem\File;

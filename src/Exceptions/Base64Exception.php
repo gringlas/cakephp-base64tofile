@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use Exception;
+
 /**
  * Created by IntelliJ IDEA.
  * User: sebastiankoller
