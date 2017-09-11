@@ -1,0 +1,30 @@
+{
+    "name": "gringlas/cakephp-base64tofile",
+    "description": "Convert a base64 encoded string (like an image) to an actual file for usage in a standart file upload.",
+    "type": "cakephp-plugin",
+    "require": {
+        "php": ">=5.5.9",
+        "cakephp/cakephp": ">=3.3.2 <4.0.0"
+    },
+    "authors" : [
+        {
+            "name" : "Sebastian Köller",
+            "role" : "Author",
+            "homepage" : "http://www.phihochzwei.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Base64ToFile\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DHLApi\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
+}
