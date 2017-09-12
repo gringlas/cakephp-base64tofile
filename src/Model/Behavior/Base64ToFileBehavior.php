@@ -3,7 +3,7 @@
 namespace Base64ToFile\Model\Behavior;
 
 use ArrayObject;
-use App\Exceptions\Base64Exception;
+use Base64ToFile\Exceptions\Base64Exception;
 use Cake\Database\Exception;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
@@ -36,19 +36,21 @@ class Base64ToFileBehavior extends Behavior
 
     public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
     {
-        $this->checkFieldForBase64String($data);
-        $decodedImageFile = base64_decode(explode(',', $data['file'])[1]);
-        $fileObject = new File(TMP . 'uploads' . DS . time() . "_" . $data['filename'], true);
-        $fileObject->write($decodedImageFile);
-        $param = explode('/', $fileObject->mime());
-        $filename = $data['filename'];
-        $data['filename'] = [
-            'name' => $filename . '.' . $param[1],
-            'type' => $fileObject->mime(),
-            'tmp_name' => $fileObject->path,
-            'error' => 0,
-            'size' => $fileObject->size()
-        ];
+        if (isset($data['file'])) {
+            $this->checkFieldForBase64String($data);
+            $decodedImageFile = base64_decode(explode(',', $data['file'])[1]);
+            $fileObject = new File(TMP . 'uploads' . DS . time() . "_" . $data['filename'], true);
+            $fileObject->write($decodedImageFile);
+            $param = explode('/', $fileObject->mime());
+            $filename = $data['filename'];
+            $data['filename'] = [
+                'name' => $filename . '.' . $param[1],
+                'type' => $fileObject->mime(),
+                'tmp_name' => $fileObject->path,
+                'error' => 0,
+                'size' => $fileObject->size()
+            ];
+        }
     }
 
 

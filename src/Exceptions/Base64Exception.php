@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace Base64ToFile\Exceptions;
 
 use Exception;
 
