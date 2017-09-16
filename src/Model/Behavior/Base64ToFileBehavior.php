@@ -4,6 +4,7 @@ namespace Base64ToFile\Model\Behavior;
 
 use ArrayObject;
 use Base64ToFile\Exceptions\Base64Exception;
+use Base64ToFile\Exceptions\NoFilenameException;
 use Cake\Database\Exception;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
@@ -42,7 +43,11 @@ class Base64ToFileBehavior extends Behavior
             $fileObject = new File(TMP . 'uploads' . DS . time() . "_" . $data['filename'], true);
             $fileObject->write($decodedImageFile);
             $param = explode('/', $fileObject->mime());
-            $filename = $data['filename'];
+            if (isset($data['filename'])) {
+                $filename = $data['filename'];
+            } else {
+                throw new NoFilenameException();
+            }
             $data['filename'] = [
                 'name' => $filename . '.' . $param[1],
                 'type' => $fileObject->mime(),
