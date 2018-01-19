@@ -37,7 +37,7 @@ class Base64ToFileBehavior extends Behavior
 
     public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
     {
-        if (isset($data['file'])) {
+        if (isset($data['file']) && $data['file'] != "") {
             $this->checkFieldForBase64String($data);
             $decodedImageFile = base64_decode(explode(',', $data['file'])[1]);
             $fileObject = new File(TMP . 'uploads' . DS . time() . "_" . $data['filename'], true);
