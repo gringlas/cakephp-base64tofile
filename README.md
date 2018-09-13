@@ -2,30 +2,17 @@
 
 ## About
 
-This plugin will convert a base64 encoded file string into a "classic" fileupload $_FILES, which can then be passed to other fileuploads.
+This plugin will convert a base64 encoded file string into a "classic" fileupload, like in $_FILES, which can then be passed to other fileuploads, like josegonzalez/cakephp-upload. 
 
 ## Installation
 
-Das Plugin wird aus unserem bitbucket geladen und nicht mit composer (da wir kein lokales packagist haben).
-Die composer.json des gewünschten Projekts bitte folgendermaßen erweitern: (Achtung BITBUCKETNAME durch eigenen Accountnamen erstzen.)
+To install simply add it to your composer dependencies `composer require gringlas/cakephp-base64tofile`.
+The plugin is mainly a behavior, which you should attach to your file entity: 
 
+```php
+$this->addBehavior('Base64ToFile.Base64ToFile', [
+        'field' => 'file
+    ]);
 ```
-"require" : {
-    "gringlas/cakephp-base64tofile" : "dev-master"
-},
-"config" : {
-    "secure-http" : false
-},
-"repositories" : [
-    {
-        "type" : "vcs",
-        "url" : "http://BITBUCKETNAME@jira.phihochzwei.com:7990/scm/cpp/base64tofile.git"
-    }
-]
-```
+Where `field` contains the name of the field with the base64 encoded file.
 
-Danach wie gewohnt 
-
-```
-composer update
-```
