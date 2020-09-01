@@ -1,3 +1,5 @@
 /vendor/*
 !/config/routes.php
 /config
+
+.idea

@@ -11,6 +11,7 @@ use Cake\Filesystem\File;
 use Cake\ORM\Behavior;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
+use Laminas\Diactoros\UploadedFile;
 
 /**
  * Base64ToFile behavior
@@ -48,13 +49,13 @@ class Base64ToFileBehavior extends Behavior
             } else {
                 throw new NoFilenameException();
             }
-            $data['filename'] = [
-                'name' => $filename . '.' . $param[1],
-                'type' => $fileObject->mime(),
-                'tmp_name' => $fileObject->path,
-                'error' => 0,
-                'size' => $fileObject->size()
-            ];
+            $data['filename'] = new UploadedFile(
+                $fileObject->path,
+                $fileObject->size(),
+                UPLOAD_ERR_OK,
+                $filename . '.' . $param[1],
+                $fileObject->mime()
+            );
         }
     }
 
