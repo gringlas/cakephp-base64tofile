@@ -3,8 +3,8 @@
     "description": "Convert a base64 encoded string (like an image) to an actual file for usage in a standard file upload.",
     "type": "cakephp-plugin",
     "require": {
-        "php": ">=5.5.9",
-        "cakephp/cakephp": "~3.0"
+        "php": ">=7.2",
+        "cakephp/cakephp": "^4.0"
     },
     "authors" : [
         {
