@@ -11,7 +11,7 @@ The plugin is mainly a behavior, which you should attach to your file entity:
 
 ```php
 $this->addBehavior('Base64ToFile.Base64ToFile', [
-        'field' => 'file
+        'field' => 'file'
     ]);
 ```
 Where `field` contains the name of the field with the base64 encoded file.

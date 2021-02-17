@@ -43,7 +43,6 @@ class Base64ToFileBehavior extends Behavior
             $decodedImageFile = base64_decode(explode(',', $data['file'])[1]);
             $fileObject = new File(TMP . 'uploads' . DS . time() . "_" . $data['filename'], true);
             $fileObject->write($decodedImageFile);
-            $param = explode('/', $fileObject->mime());
             if (isset($data['filename'])) {
                 $filename = $data['filename'];
             } else {
@@ -53,7 +52,7 @@ class Base64ToFileBehavior extends Behavior
                 $fileObject->path,
                 $fileObject->size(),
                 UPLOAD_ERR_OK,
-                $filename . '.' . $param[1],
+                $data['filename'],
                 $fileObject->mime()
             );
         }
